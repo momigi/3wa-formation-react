@@ -86,7 +86,19 @@ console.log(tasks);
             La propriété `key` est utilisée pour identifier
             chaque élément enfant générer par la méthode `map`
             */
-            <TaskItem key={index} name={item}></TaskItem>
+            <TaskItem
+            key={index}
+            name={item}
+            removeItem={() => {
+              // On copie la ref de tasks donc `newArr` est lié a `tasks`
+              const newArr = [...tasks]; // ref 001 - ref 002
+              // `splice` est méthode qui permet d'ajouter, supprimer ou modifier un element d'une liste (tableau)
+              newArr.splice(index, 1);
+
+              setTasks(newArr); // ref 001
+              localStorage.setItem('my-tasks', JSON.stringify(newArr));
+            }}
+          />
           ))}
         </ul>
       </section>
