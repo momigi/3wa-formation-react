@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "../../../3wa JS"
+		},
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../3wa ran"
+		},
+		{
+			"path": "../../../3WA intégration"
+		},
+		{
+			"path": "../../../git - gitub"
+		}
+	],
+	"settings": {
+		"emmet.includeLanguages": {
+			"javascript": "javascriptreact"
+		},
+		"liveServer.settings.multiRootWorkspaceName": "3wa react"
+	}
+}
