@@ -63,10 +63,20 @@ const reducer = function (state, action) {
       animals.splice(2, 1);
       // ["dog", "cat"]
       */
-      tasksCurrent.splice(action.payload, 1);
+
+      const newFilterTask = tasksCurrent.filter(
+        (item) => item !== action.payload
+      );
+
+      arr.splice(arr.indexOf(action.payload), 1);
       // Stock les taches dans le localstorage
-      localStorage.setItem('my-tasks', JSON.stringify(tasksCurrent));
-      return { ...state, tasks: state.taskFilter ? arr : tasksCurrent };
+      localStorage.setItem('my-tasks', JSON.stringify(arr));
+
+      return {
+        ...state,
+        tasks: arr,
+        taskFilter: state.taskFilter ? newFilterTask : null,
+      };
 
     case 'searchTask':
       const taskSearch = state.tasks.filter((item) =>
@@ -167,9 +177,7 @@ useffect sera exécute au montage du composant
             <TaskItem
               key={index}
               name={item}
-              removeItem={() =>
-                dispatch({ type: 'removeTask', payload: index })
-              }
+              removeItem={() => dispatch({ type: 'removeTask', payload: item })}
             />
           ))}
         </ul>
@@ -182,8 +190,6 @@ useffect sera exécute au montage du composant
 
 Créer un composant nommé `TaskItem` qui représente le UI de chaque `item`
 de la liste `tasks` 
-
-
 
 */
 
